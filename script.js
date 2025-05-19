@@ -37,11 +37,57 @@ function checkTheme() {
   }
 }
 
-// Añadir event listener al botón
+// Función para animar elementos cuando son visibles
+function animateOnScroll() {
+  const elements = document.querySelectorAll('.fade-in, .slide-in');
+  
+  elements.forEach(element => {
+    const elementPosition = element.getBoundingClientRect().top;
+    const screenPosition = window.innerHeight / 1.2;
+    
+    if (elementPosition < screenPosition) {
+      element.style.opacity = 1;
+      
+      if (element.classList.contains('from-left')) {
+        element.style.transform = 'translateX(0)';
+      } else if (element.classList.contains('from-right')) {
+        element.style.transform = 'translateX(0)';
+      }
+    }
+  });
+}
+
+// Suavizar el scroll para anclas
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    const targetId = this.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// Añadir event listener al botón de tema y scroll
 document.addEventListener('DOMContentLoaded', function() {
+  // Verificar tema
   checkTheme();
+  
+  // Event listener para botón de cambio de tema
   const themeToggle = document.getElementById('theme-toggle');
   if (themeToggle) {
     themeToggle.addEventListener('click', toggleTheme);
   }
+  
+  // Inicializar animaciones
+  animateOnScroll();
+  
+  // Animar al hacer scroll
+  window.addEventListener('scroll', animateOnScroll);
 });
