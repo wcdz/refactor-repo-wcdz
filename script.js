@@ -74,6 +74,127 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+// Función para manejar el botón de volver arriba
+function handleBackToTop() {
+  const backToTopButton = document.getElementById('back-to-top');
+  
+  // Mostrar u ocultar el botón según la posición del scroll
+  function toggleBackToTopButton() {
+    if (window.scrollY > 300) {
+      backToTopButton.classList.add('visible');
+    } else {
+      backToTopButton.classList.remove('visible');
+    }
+  }
+  
+  // Evento de click para volver arriba
+  if (backToTopButton) {
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // También permitir usar la tecla Enter para activar el botón
+    backToTopButton.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    });
+    
+    // Mostrar/ocultar en función del scroll
+    window.addEventListener('scroll', toggleBackToTopButton);
+    
+    // Verificar posición inicial
+    toggleBackToTopButton();
+  }
+}
+
+// Función para resaltar el enlace de navegación activo
+function highlightActiveNavLink() {
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  
+  // Detectar qué sección es visible actualmente
+  function setActiveLink() {
+    let current = '';
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      
+      if (window.scrollY >= (sectionTop - 200)) {
+        current = section.getAttribute('id');
+      }
+    });
+    
+    // Resaltar el enlace correspondiente
+    navLinks.forEach(link => {
+      link.classList.remove('active-link');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active-link');
+      }
+    });
+  }
+  
+  window.addEventListener('scroll', setActiveLink);
+  setActiveLink(); // Comprobar enlace activo al cargar
+}
+
+// Función para precarga de imágenes críticas
+function preloadCriticalImages() {
+  const imagesToPreload = [
+    './assets/profile-pic.png',
+    './assets/sun.svg',
+    './assets/moon.svg'
+  ];
+  
+  imagesToPreload.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+}
+
+// Función para efecto parallax
+function setupParallaxEffect() {
+  const profileSection = document.getElementById('profile');
+  const profileImage = document.querySelector('.section__pic-container img');
+  
+  if (!profileSection || !profileImage) return;
+  
+  window.addEventListener('scroll', () => {
+    const scrollValue = window.scrollY;
+    
+    // Efecto de movimiento parallax sutil para la imagen de perfil
+    if (scrollValue < profileSection.offsetHeight) {
+      profileImage.style.transform = `translateY(${scrollValue * 0.15}px)`;
+    }
+  });
+  
+  // Efecto de movimiento en respuesta al movimiento del ratón
+  profileSection.addEventListener('mousemove', (e) => {
+    const { clientX, clientY } = e;
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    
+    // Calcular la posición relativa del cursor
+    const moveX = (clientX - windowWidth / 2) / 25;
+    const moveY = (clientY - windowHeight / 2) / 25;
+    
+    // Aplicar transformación a la imagen de perfil
+    profileImage.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  });
+  
+  // Restaurar posición al salir de la sección
+  profileSection.addEventListener('mouseleave', () => {
+    profileImage.style.transform = 'translate(0, 0)';
+  });
+}
+
 // Añadir event listener al botón de tema y scroll
 document.addEventListener('DOMContentLoaded', function() {
   // Verificar tema
@@ -90,4 +211,24 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Animar al hacer scroll
   window.addEventListener('scroll', animateOnScroll);
+  
+  // Inicializar botón de volver arriba
+  handleBackToTop();
+  
+  // Resaltar enlace de navegación activo
+  highlightActiveNavLink();
+  
+  // Configurar efecto parallax
+  setupParallaxEffect();
+  
+  // Precarga de imágenes críticas
+  preloadCriticalImages();
+  
+  // Aplicar animaciones iniciales con delay
+  setTimeout(() => {
+    document.querySelectorAll('.fade-in, .slide-in').forEach(el => {
+      el.style.transition = 'all 1s ease';
+    });
+    animateOnScroll();
+  }, 300);
 });
