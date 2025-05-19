@@ -4,14 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Professional portfolio with projects and experience in software engineering" />
+    <meta
+      name="description"
+      content="Professional portfolio with projects and experience in software engineering"
+    />
     <title>My Portfolio | Software Engineer</title>
+    <link rel="shortcut icon" href="./assets/sun.svg" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
     <link rel="stylesheet" href="animations.css" />
   </head>
   <body>
-    <button
+    <!--<button
       class="theme-toggle"
       id="theme-toggle"
       aria-label="Toggle Dark Mode"
@@ -23,9 +27,17 @@
         width="24"
         height="24"
       ></object>
-    </button>
+    </button>-->
     <nav id="desktop-nav">
-      <div class="logo">@wcdz</div>
+      <div class="logo">
+        <object
+          data="./assets/sun.svg"
+          type="image/svg+xml"
+          class="logo-icon"
+          width="24"
+          height="24"
+        ></object>
+      </div>
       <div>
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
@@ -36,7 +48,16 @@
       </div>
     </nav>
     <nav id="hamburger-nav">
-      <div class="logo">@wcdz</div>
+      <div class="logo">
+        <object
+          data="./assets/sun.svg"
+          type="image/svg+xml"
+          class="logo-icon"
+          width="24"
+          height="24"
+        ></object>
+        @wcdz
+      </div>
       <div class="hamburger-menu">
         <div class="hamburger-icon" onclick="toggleMenu()">
           <span></span>
@@ -52,12 +73,6 @@
       </div>
     </nav>
     <section id="profile" class="fade-in">
-      <div class="section__pic-container slide-in from-left">
-        <img
-          src="./assets/profile-pic.png"
-          alt="Profile picture"
-        />
-      </div>
       <div class="section__text slide-in from-right">
         <p class="section__text__p1">Hello, I'm</p>
         <h1 class="title">William Chavez</h1>
@@ -93,13 +108,13 @@
       <p class="section__text__p1">Get To Know More</p>
       <h1 class="title">About Me</h1>
       <div class="section-container">
-        <div class="section__pic-container slide-in from-left">
+        <!--<div class="section__pic-container slide-in from-left">
           <img
             src="./assets/about-pic.png"
             alt="About me picture"
             class="about-pic"
           />
-        </div>
+        </div>-->
         <div class="about-details-container slide-in from-right">
           <div class="about-containers">
             <div class="details-container">
@@ -118,12 +133,22 @@
                 class="icon"
               />
               <h3>Education</h3>
-              <p>Software Engineering<br />Msc. Data Science & Artificial Intelligence</p>
+              <p>
+                Software Engineering<br />Msc. Data Science & Artificial
+                Intelligence
+              </p>
             </div>
           </div>
           <div class="text-container">
             <p>
-              I'm a passionate software engineer focused on creating interactive and engaging web experiences. With over 3 years of experience, I specialize in building modern applications using cutting-edge technologies. I love learning new skills and tackling creative challenges to deliver digital solutions that combine elegant design with robust functionality.
+              Hi! My name is <strong>William</strong>, my passion for programming led me to be
+              self-taught, I am completely curious, I love to develop <strong>code</strong>,
+              learn new technologies, solve problems and build challenging and
+              innovative products with a focus on software quality including
+              best practices, <strong>scalability</strong>, security and UX. There is no
+              challenge big enough not to try, I am a true believer in teamwork,
+              collaboration and communication, so I adapt quickly to changes in
+              the <strong>development</strong> team and other areas.
             </p>
           </div>
         </div>
@@ -282,7 +307,7 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Landing Page</h2>
+            <h2 class="experience-sub-title project-title">Kikness</h2>
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
@@ -306,7 +331,7 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Notes App</h2>
+            <h2 class="experience-sub-title project-title">Uway</h2>
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
@@ -330,7 +355,7 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">E-commerce</h2>
+            <h2 class="experience-sub-title project-title">Safe105</h2>
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
@@ -373,7 +398,11 @@
             alt="LinkedIn icon"
             class="icon contact-icon"
           />
-          <p><a href="https://www.linkedin.com/in/wcdz" target="_blank">LinkedIn</a></p>
+          <p>
+            <a href="https://www.linkedin.com/in/wcdz" target="_blank"
+              >LinkedIn</a
+            >
+          </p>
         </div>
       </div>
     </section>
@@ -388,7 +417,7 @@
           </ul>
         </div>
       </nav>
-      <p>Copyright &#169; 2023 William Chavez. All Rights Reserved.</p>
+      <p>wcdz &#169; <span id="current-year"></span></p>
     </footer>
     <script src="script.js"></script>
   </body>

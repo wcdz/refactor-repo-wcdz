@@ -195,6 +195,14 @@ function setupParallaxEffect() {
   });
 }
 
+// Función para actualizar el año actual en el footer
+function updateCurrentYear() {
+  const currentYearSpan = document.getElementById('current-year');
+  if (currentYearSpan) {
+    currentYearSpan.textContent = new Date().getFullYear();
+  }
+}
+
 // Añadir event listener al botón de tema y scroll
 document.addEventListener('DOMContentLoaded', function() {
   // Verificar tema
@@ -223,6 +231,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Precarga de imágenes críticas
   preloadCriticalImages();
+  
+  // Actualizar año actual en el footer
+  updateCurrentYear();
   
   // Aplicar animaciones iniciales con delay
   setTimeout(() => {
