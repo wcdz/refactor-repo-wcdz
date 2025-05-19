@@ -3,6 +3,9 @@
     height: 83vh;
     margin-bottom: 6rem;
   }
+  
+  
+  
   .about-containers {
     flex-wrap: wrap;
   }
@@ -37,6 +40,9 @@
   section {
     margin: 0 5%;
   }
+  
+  
+  
   .section__pic-container {
     width: 275px;
     height: 275px;
@@ -56,6 +62,9 @@
     height: 83vh;
     margin-bottom: 0;
   }
+  
+  
+  
   article {
     font-size: 1rem;
   }
